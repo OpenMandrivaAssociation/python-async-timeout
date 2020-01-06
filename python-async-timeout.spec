@@ -12,7 +12,7 @@ Summary:        An asyncio-compatible timeout context manager
 
 License:        ASL 2.0
 URL:            https://github.com/aio-libs/async-timeout
-Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}/async-timeout-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires: python-devel
 BuildRequires: python-setuptools
