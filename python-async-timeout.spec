@@ -1,7 +1,7 @@
 %global srcname async-timeout
 
 Name:		python-%{srcname}
-Version:	3.0.1
+Version:	4.0.2
 Release:	1
 Summary:	An asyncio-compatible timeout context manager
 License:	ASL 2.0
