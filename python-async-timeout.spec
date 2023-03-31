@@ -2,7 +2,7 @@
 
 Name:		python-%{srcname}
 Version:	4.0.2
-Release:	1
+Release:	2
 Summary:	An asyncio-compatible timeout context manager
 License:	ASL 2.0
 URL:		https://github.com/aio-libs/async-timeout
