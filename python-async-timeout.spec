@@ -29,13 +29,13 @@ suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
 %prep -a
-sed -i -e 's/addopts= --cov=async_timeout --cov-report=term --cov-report=html --cov-branch/addopts= --no-cov/g' setup.cfg
+sed -i '/addopts= --cov=async_timeout --cov-report=term --cov-report=html --cov-branch/d' setup.cfg
 
 %if %{with tests}
 %check
 export CI=true
 export PYTHONPATH="%{buildroot}%{python_sitelib}:${PWD}"
-pytest --no-cov -v
+pytest -v
 %endif
 
 %files
