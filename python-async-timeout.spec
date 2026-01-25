@@ -28,6 +28,9 @@ logic around block of code or in cases when asyncio.wait_for() is not \
 suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
+%prep -a
+sed -i -e 's/addopts= --cov=async_timeout --cov-report=term --cov-report=html --cov-branch/addopts= --no-cov/g' setup.cfg
+
 %if %{with tests}
 %check
 export CI=true
