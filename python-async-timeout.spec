@@ -1,17 +1,25 @@
-%global srcname async-timeout
+%define module async-timeout
+%define oname async_timeout
 
-Name:		python-%{srcname}
-Version:	4.0.2
-Release:	4
+%bcond tests 1
+
+Name:		python-async-timeout
+Version:	5.0.1
+Release:	1
 Summary:	An asyncio-compatible timeout context manager
 License:	ASL 2.0
 URL:		https://github.com/aio-libs/async-timeout
-Source0:	%{url}/archive/v%{version}/async-timeout-%{version}.tar.gz
+Source0:	%{url}/archive/v%{version}/async-timeout-%{version}.tar.gz#/%{name}-%{version}.tar.gz
+BuildSystem:	python
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python-setuptools
-BuildRequires:	python-pytest-runner
-%{?python_provide:%python_provide python-%{srcname}}
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
+%if %{with tests}
+BuildRequires:	python%{pyver}dist(pytest)
+BuildRequires:	python%{pyver}dist(pytest-asyncio)
+%endif
 
 %description
 asyncio-compatible timeout context manager\
@@ -20,17 +28,15 @@ logic around block of code or in cases when asyncio.wait_for() is not \
 suitable. Also it's much faster than asyncio.wait_for() because timeout\
 doesn't create a new task.
 
-%prep
-%autosetup -n %{srcname}-%{version}
+%if %{with tests}
+%check
+export CI=true
+export PYTHONPATH="%{buildroot}%{python_sitelib}:${PWD}"
+pytest --no-cov -v
+%endif
 
-%build
-%py_build
-
-%install
-%py_install
-
-%files -n python-%{srcname}
+%files
 %license LICENSE
 %doc README.rst CHANGES.rst
-%{python_sitelib}/async_timeout/
-%{python_sitelib}/async_timeout-*.egg-info/
+%{python_sitelib}/%{oname}
+%{python_sitelib}/%{oname}-%{version}.dist-info
