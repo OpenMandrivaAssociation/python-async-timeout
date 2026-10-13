@@ -5,14 +5,14 @@
 
 Name:		python-async-timeout
 Version:	5.0.1
-Release:	1
+Release:	2
 Summary:	An asyncio-compatible timeout context manager
 License:	ASL 2.0
 URL:		https://github.com/aio-libs/async-timeout
 Source0:	%{url}/archive/v%{version}/async-timeout-%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildSystem:	python
 BuildArch:	noarch
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python%{pyver}dist(wheel)
